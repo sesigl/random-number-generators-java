@@ -1,7 +1,5 @@
 package org.example;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 import java.util.random.RandomGeneratorFactory;
@@ -23,16 +21,11 @@ import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 
-//The test index is throughput
 @BenchmarkMode(Mode.Throughput)
-//Preheating is required to eliminate the impact of jit real-time compilation and JVM collection of various indicators. Since we cycle many times in a single cycle, preheating once is OK
 @Warmup(iterations = 3)
-//Number of threads
 @Threads(1)
 @Fork(1)
-//Test times, we test 50 times
 @Measurement(iterations = 5)
-//The life cycle of a class instance is defined, and all test threads share an instance
 @State(value = Scope.Benchmark)
 public class BenchmarkSingleThreadedTest {
   @Param({
